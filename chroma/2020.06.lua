@@ -41,7 +41,7 @@ whatis("Description: The Chroma package provides a toolbox and executables to ca
 whatis("URL: https://ngc.nvidia.com/catalog/containers/hpc:chroma")
 
 if not (os.getenv("NGC_SINGULARITY_MODULE") == "none") then
-	local singularity_module = os.getenv("NGC_SINGULARITY_MODULE") or "Singularity"
+	local singularity_module = os.getenv("NGC_SINGULARITY_MODULE") or "singularity"
 	if not (isloaded(singularity_module)) then
 		load(singularity_module)
 	end
@@ -54,10 +54,10 @@ local uri = "docker://nvcr.io/hpc/chroma:2020.06"
 local programs = {"chroma", "hmc", "mpirun"}
 local entrypoint_args = ""
 
--- Workaround for issues with Singularity environment variable handling
+-- Workaround for issues with singularity environment variable handling
 setenv("SINGULARITYENV_LD_LIBRARY_PATH", "")
 
--- The absolute path to Singularity is needed so it can be invoked on remote
+-- The absolute path to singularity is needed so it can be invoked on remote
 -- nodes without the corresponding module necessarily being loaded.
 -- Trim off the training newline.
 local singularity = capture("which singularity | head -c -1")
@@ -68,7 +68,7 @@ if (os.getenv("NGC_IMAGE_DIR") and mode() == "load") then
 	if not (isFile(image)) then
 		-- The image could not be found in the container directory
 		LmodMessage("file not found: " .. image)
-		LmodMessage("The container image will be pulled upon first use to the Singularity cache")
+		LmodMessage("The container image will be pulled upon first use to the singularity cache")
 		image = uri
 
 		-- Alternatively, this could pull the container image and
@@ -76,7 +76,7 @@ if (os.getenv("NGC_IMAGE_DIR") and mode() == "load") then
 		--subprocess(singularity .. " pull " .. image .. " " .. uri)
 	end
 else
-	-- Look for the image in the Singularity cache, and if not found
+	-- Look for the image in the singularity cache, and if not found
 	-- download it when "singularity run" is invoked.
 	image = uri
 end
