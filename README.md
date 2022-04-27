@@ -1,5 +1,7 @@
-# Container modulefiles for University of Cincinnati ARC
-# taken from NVIDIA/ngc-container-environment-modules
+Container modulefiles for University of Cincinnati ARC sources from NVIDIA/ngc-container-environment-modules
+
+Notable Changes:
+"Singularity" references changed to "singularity"
 
 # NGC Container Environment Modules
 
