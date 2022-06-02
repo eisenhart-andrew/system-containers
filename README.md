@@ -22,7 +22,7 @@ containers](https://ngc.nvidia.com) as environment modules.
 
 ```
 $ git clone https://github.com/NVIDIA/ngc-container-environment-modules
-$ module use $(pwd)/ngc-container-environment-modules
+$ module use $(pwd)/system-containers
 $ module load gromacs
 $ gmx
 ```
